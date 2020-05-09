@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { HelloView } from "./views/HelloView";
+import { App } from "./App";
 
 ReactDOM.render(
-  <HelloView/>,
+  <App/>,
   document.getElementById("app")
 );
