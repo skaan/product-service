@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Req, Post, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('auth')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('*')
+  gatewayRedirect(@Req() req, @Res() res) {
+    console.log('received');
+    res.redirect(307, `http://localhost:3001${req.url}`)
   }
 }
