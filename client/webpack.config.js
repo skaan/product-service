@@ -2,6 +2,7 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env, options) => {
   return {
@@ -9,7 +10,7 @@ module.exports = (env, options) => {
     entry: "./src/index.tsx",
     output: {
       filename: "bundle.js",
-      path: path.resolve(__dirname + "/dist"),
+      path: path.resolve(__dirname, "../public"),
       publicPath: "/",
     },
     resolve: {
@@ -57,6 +58,7 @@ module.exports = (env, options) => {
       new HtmlWebpackPlugin({
         template: path.resolve('./index.template.html')
       }),
+      new CleanWebpackPlugin(),
     ],
   }
 };
