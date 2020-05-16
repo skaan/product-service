@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { withRouter } from 'react-router-dom';
 
 import { store, history } from './store';
-import { App } from "./App";
+import { App } from './App';
 
 const AppWithRouter = withRouter(App);
 
