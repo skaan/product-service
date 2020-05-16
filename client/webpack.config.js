@@ -7,14 +7,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = (env, options) => {
   return {
     mode: options.mode,
-    entry: "./src/index.tsx",
+    entry: "./src/index.jsx",
     output: {
       filename: "bundle.js",
       path: path.resolve(__dirname, "../public"),
       publicPath: "/",
     },
     resolve: {
-      extensions: [".ts", ".tsx", ".js", ".json"]
+      extensions: [".js", ".jsx", ".json"]
     },
     devtool: "source-map",
     devServer: {
@@ -25,20 +25,15 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
-          test: /\.(ts|js)x?$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          loader: 'eslint-loader',
-          options: {
-            configFile: './.eslintrc.js',
-          },
+          use: 'eslint-loader',
           enforce: 'pre'
         },
         {
-          test: /\.(ts|js)x?$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader'
-          },
+          use: ['babel-loader']
         },
         {
           test: /\.scss$/,

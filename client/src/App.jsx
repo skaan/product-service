@@ -5,15 +5,23 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 
 import { HomeView } from './views/HomeView'
 import { AboutView } from './views/AboutView'
 
-export class App extends React.Component<{}, {}> {
-  render(): JSX.Element {
-    return (
-      <BrowserRouter>
-        <div>
+export const App = () => {
+  const input = useSelector(state => state.input)
+  const dispatch = useDispatch()
+
+  const onChangeInput = (e) => {
+    dispatch({ type: "INPUT_CHANGED", payload: e.target.value })
+  }
+
+  return (
+    <BrowserRouter>
+      <div>
+        <input value={input} onChange={onChangeInput} />
         <nav>
           <ul>
             <li>
@@ -33,7 +41,6 @@ export class App extends React.Component<{}, {}> {
           </Route>
         </Switch>
       </div>
-      </BrowserRouter>
-    )
-  }
+    </BrowserRouter>
+  )
 }
